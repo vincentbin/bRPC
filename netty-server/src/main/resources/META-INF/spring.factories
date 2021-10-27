@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+ com.polyu.rpc.server.spring.ServerAutoConfig
