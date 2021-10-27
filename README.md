@@ -12,11 +12,11 @@
 ## Getting Start
 
 ### 启动
-- API式
+#### API式启动
 1. com.application.test.api.server.ServerTest.java  服务端启动
 2. com.application.test.api.client.ClientTest.java  客户端启动 并rpc调用HelloService.hello()
 
-- SpringBoot整合（由于未发布到远程仓库，所以需本地maven install。）
+#### 与SpringBoot整合启动（由于未发布到远程仓库，所以需本地maven install。）
 
 1. 客户端
 - maven
