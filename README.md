@@ -89,7 +89,7 @@ bRPC.server.registry.address=127.0.0.1:2181
 6. 起注册中心&emsp;&emsp;&emsp;指令：./bin/zkCli.sh
 
 </div>
-</detail>
+</details>
 
 ## A netty-based RPC framewor
 
