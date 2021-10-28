@@ -43,10 +43,6 @@ public class RpcFuture implements Future<Object> {
             }
             return null;
         }
-        if (isTimeout()) {
-            setTimeoutException();
-            throw this.timeoutException;
-        }
         return this.response.getResult();
     }
 
@@ -54,11 +50,10 @@ public class RpcFuture implements Future<Object> {
     public Object get(long timeout, @Nonnull TimeUnit unit) throws InterruptedException {
         boolean success = semaphore.tryAcquire(1, timeout, unit);
         if (success) {
-            if (this.response != null) {
-                return this.response.getResult();
-            } else {
+            if (this.response == null) {
                 return null;
             }
+            return this.response.getResult();
         } else {
             throw new RuntimeException("Timeout exception. Request id: " + this.request.getRequestId()
                     + ". Request class name: " + this.request.getClassName()
@@ -69,7 +64,7 @@ public class RpcFuture implements Future<Object> {
     /**
      * 超时异常设置
      */
-    private void setTimeoutException() {
+    public void setTimeoutException() {
         if (this.timeoutException == null) {
             this.timeoutException = new CancellationException("Response timeout for request: " + this.request.getRequestId());
         }
@@ -106,16 +101,6 @@ public class RpcFuture implements Future<Object> {
         semaphore.release(1);
     }
 
-    public void invokeCallbacks() {
-        try {
-            for (final AsyncRPCCallback callback : pendingCallbacks) {
-                runCallback(callback);
-            }
-        } catch (Exception e) {
-            logger.error("invokeCallbacks failed. exception: {}.", e.getMessage(), e);
-        }
-    }
-
     /**
      * 为保证性能 this.response 无volatile
      * 需要确保 addCallback 后调用请求发送
@@ -135,6 +120,16 @@ public class RpcFuture implements Future<Object> {
         return this;
     }
 
+    public void invokeCallbacks() {
+        try {
+            for (final AsyncRPCCallback callback : pendingCallbacks) {
+                runCallback(callback);
+            }
+        } catch (Exception e) {
+            logger.error("invokeCallbacks failed. exception: {}.", e.getMessage(), e);
+        }
+    }
+
     private void runCallback(final AsyncRPCCallback callback) {
         final RpcResponse res = this.response;
         RpcClient.submit(new Runnable() {
@@ -147,6 +142,22 @@ public class RpcFuture implements Future<Object> {
                 }
             }
         });
+    }
+
+    /**
+     * 获取启动时间
+     * @return
+     */
+    public long getStartTime() {
+        return startTime;
+    }
+
+    /**
+     * 获取超时异常
+     * @return
+     */
+    public CancellationException getTimeoutException() {
+        return timeoutException;
     }
 
     @Override

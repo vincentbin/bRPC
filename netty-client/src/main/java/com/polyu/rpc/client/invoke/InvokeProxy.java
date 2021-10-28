@@ -1,12 +1,7 @@
-package com.polyu.rpc.client.proxy;
+package com.polyu.rpc.client.invoke;
 
-import com.polyu.rpc.client.connect.HandlerManager;
-import com.polyu.rpc.client.netty.handler.RpcClientHandler;
-import com.polyu.rpc.client.result.future.RpcFuture;
 import com.polyu.rpc.codec.RpcRequest;
-import com.polyu.rpc.route.DefaultRpcLoadBalanceHolder;
 import com.polyu.rpc.route.RpcLoadBalance;
-import com.polyu.rpc.util.ServiceUtil;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -33,7 +28,7 @@ public class InvokeProxy implements InvocationHandler {
      * @throws Throwable
      */
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    public Object invoke(Object proxy, Method method, Object[] args) {
         RpcRequest request = new RpcRequest();
         request.setRequestId(UUID.randomUUID().toString());
         request.setClassName(method.getDeclaringClass().getName());
@@ -42,13 +37,8 @@ public class InvokeProxy implements InvocationHandler {
         request.setParameters(args);
         request.setVersion(version);
 
-        String serviceKey = ServiceUtil.makeServiceKey(method.getDeclaringClass().getName(), version);
-        RpcClientHandler handler = HandlerManager.chooseHandler(serviceKey, loadBalance == null ? DefaultRpcLoadBalanceHolder.getInstance() : loadBalance);
-        RpcFuture rpcFuture = handler.sendRequest(request, this.timeoutLength);
-        Object res = rpcFuture.get();
-        // 回调
-        rpcFuture.invokeCallbacks();
-        return res;
+        Invocation invocation = new Invocation(request, this.loadBalance, this.timeoutLength);
+        return invocation.invoke();
     }
 
 }

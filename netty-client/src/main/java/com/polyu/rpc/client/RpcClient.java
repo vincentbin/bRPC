@@ -2,7 +2,7 @@ package com.polyu.rpc.client;
 
 import com.polyu.rpc.annotation.BRpcConsumer;
 import com.polyu.rpc.client.connect.ConnectUpdater;
-import com.polyu.rpc.client.proxy.InvokeProxy;
+import com.polyu.rpc.client.invoke.InvokeProxy;
 import com.polyu.rpc.client.result.PendingRpcHolder;
 import com.polyu.rpc.registry.ServiceDiscovery;
 import com.polyu.rpc.route.RpcLoadBalance;
