@@ -1,7 +1,7 @@
 package com.polyu.rpc.client;
 
 import com.polyu.rpc.annotation.BRpcConsumer;
-import com.polyu.rpc.client.connect.ConnectionUpdater;
+import com.polyu.rpc.client.connect.ConnectUpdater;
 import com.polyu.rpc.client.proxy.InvokeProxy;
 import com.polyu.rpc.client.result.PendingRpcHolder;
 import com.polyu.rpc.registry.ServiceDiscovery;
@@ -34,8 +34,8 @@ public class RpcClient implements ApplicationContextAware, DisposableBean {
      * @param serviceDiscovery 注册中心选型 nacos / zk
      */
     public RpcClient(ServiceDiscovery serviceDiscovery) {
-        ConnectionUpdater connectionUpdater = ConnectionUpdater.getAndInitInstance(serviceDiscovery);
-        this.serviceDiscovery = connectionUpdater.getServiceDiscovery();
+        ConnectUpdater connectUpdater = ConnectUpdater.getAndInitInstance(serviceDiscovery);
+        this.serviceDiscovery = connectUpdater.getServiceDiscovery();
         this.serviceDiscovery.discoveryService();
         PendingRpcHolder.startTimeoutThreadPool();
     }
@@ -56,7 +56,7 @@ public class RpcClient implements ApplicationContextAware, DisposableBean {
     private void stop() {
         threadPoolExecutor.shutdown();
         serviceDiscovery.stop();
-        ConnectionUpdater.getInstance().stop();
+        ConnectUpdater.getInstance().stop();
         PendingRpcHolder.stop();
     }
 

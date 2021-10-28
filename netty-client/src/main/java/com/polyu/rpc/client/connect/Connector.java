@@ -55,7 +55,7 @@ public class Connector {
             logger.info("No service on node, host: {}, port: {}.", rpcMetaData.getHost(), rpcMetaData.getPort());
             return;
         }
-        ConnectionUpdater.getInstance().getRpcMetaDataSet().add(rpcMetaData);
+        ConnectUpdater.getInstance().getRpcMetaDataSet().add(rpcMetaData);
         logger.info("New service node, host: {}, port: {}.", rpcMetaData.getHost(), rpcMetaData.getPort());
         for (RpcServiceInfo serviceProtocol : rpcMetaData.getServiceInfoList()) {
             logger.info("New service info, name: {}, version: {}.", serviceProtocol.getServiceName(), serviceProtocol.getVersion());
@@ -111,7 +111,7 @@ public class Connector {
      * @param rpcMetaData server information
      */
     public void removeConnectRecord(RpcMetaData rpcMetaData) {
-        ConnectionUpdater.getInstance().getRpcMetaDataSet().remove(rpcMetaData);
+        ConnectUpdater.getInstance().getRpcMetaDataSet().remove(rpcMetaData);
         connectedServerNodes.remove(rpcMetaData);
         MetaDataKeeper.removeZkChild(rpcMetaData);
         logger.info("Remove one connection, host: {}, port: {}.", rpcMetaData.getHost(), rpcMetaData.getPort());

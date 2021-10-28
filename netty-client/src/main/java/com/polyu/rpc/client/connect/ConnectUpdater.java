@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class ConnectionUpdater implements Observer {
-    private static final Logger logger = LoggerFactory.getLogger(ConnectionUpdater.class);
+public class ConnectUpdater implements Observer {
+    private static final Logger logger = LoggerFactory.getLogger(ConnectUpdater.class);
 
     private CopyOnWriteArraySet<RpcMetaData> rpcMetaDataSet = new CopyOnWriteArraySet<>();
 
@@ -26,7 +26,7 @@ public class ConnectionUpdater implements Observer {
      * 观察者模式 持有事件
      * @param serviceDiscovery 服务发现
      */
-    private ConnectionUpdater(ServiceDiscovery serviceDiscovery) {
+    private ConnectUpdater(ServiceDiscovery serviceDiscovery) {
         this.serviceDiscovery = serviceDiscovery;
     }
 
@@ -50,13 +50,13 @@ public class ConnectionUpdater implements Observer {
      * dcl单例
      */
     private static class SingletonHolder {
-        private static volatile ConnectionUpdater instance;
+        private static volatile ConnectUpdater instance;
 
-        static ConnectionUpdater getInstance(ServiceDiscovery discovery) {
+        static ConnectUpdater getInstance(ServiceDiscovery discovery) {
             if (instance == null) {
                 synchronized (SingletonHolder.class) {
                     if (instance == null) {
-                        instance = new ConnectionUpdater(discovery);
+                        instance = new ConnectUpdater(discovery);
                         // 注册观察事件
                         instance.getServiceDiscovery().registerObserver(instance);
                     }
@@ -71,7 +71,7 @@ public class ConnectionUpdater implements Observer {
      * 获取并初始化实例
      * @return
      */
-    public static ConnectionUpdater getAndInitInstance(ServiceDiscovery discovery) {
+    public static ConnectUpdater getAndInitInstance(ServiceDiscovery discovery) {
         return SingletonHolder.getInstance(discovery);
     }
 
@@ -79,7 +79,7 @@ public class ConnectionUpdater implements Observer {
      * 初始化后获取单例方法
      * @return
      */
-    public static ConnectionUpdater getInstance() {
+    public static ConnectUpdater getInstance() {
         return SingletonHolder.instance;
     }
 

@@ -31,7 +31,7 @@ public class HandlerManager {
     public static RpcClientHandler chooseHandler(String serviceKey, RpcLoadBalance loadBalance) throws Exception {
         Map<RpcMetaData, RpcClientHandler> connectedServerNodes = Connector.getInstance().getConnectedServerNodes();
         while (connectedServerNodes.values().size() <= 0) {
-            if (!ConnectionUpdater.getInstance().isRunning()) {
+            if (!ConnectUpdater.getInstance().isRunning()) {
                 throw new RuntimeException("Client is closed.");
             }
             try {
