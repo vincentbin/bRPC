@@ -38,9 +38,6 @@ public class RpcFuture implements Future<Object> {
     public Object get() throws InterruptedException {
         semaphore.acquire(1);
         if (this.response == null) {
-            if (isCancelled()) {
-                throw this.timeoutException;
-            }
             return null;
         }
         return this.response.getResult();
@@ -88,7 +85,6 @@ public class RpcFuture implements Future<Object> {
      */
     @Override
     public boolean cancel(boolean mayInterruptIfRunning) {
-        this.setTimeoutException();
         semaphore.release(1);
         return true;
     }

@@ -2,6 +2,7 @@ package com.polyu.rpc.client.invoke;
 
 import com.polyu.rpc.client.connect.HandlerManager;
 import com.polyu.rpc.client.interceptor.Interceptor;
+import com.polyu.rpc.client.interceptor.impl.CallBackInterceptor;
 import com.polyu.rpc.client.interceptor.impl.TimeCostInterceptor;
 import com.polyu.rpc.client.netty.handler.RpcClientHandler;
 import com.polyu.rpc.client.result.future.RpcFuture;
@@ -31,6 +32,8 @@ public class Invocation {
         this.rpcRequest = rpcRequest;
         this.loadBalance = loadBalance;
         this.timeoutLength = timeoutLength;
+
+        this.interceptors.add(new CallBackInterceptor());
         this.interceptors.add(new TimeCostInterceptor());
     }
 
