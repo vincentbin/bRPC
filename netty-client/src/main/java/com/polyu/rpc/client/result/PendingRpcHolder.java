@@ -1,9 +1,6 @@
 package com.polyu.rpc.client.result;
 
 import com.polyu.rpc.client.result.future.RpcFuture;
-import lombok.extern.slf4j.XSlf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;

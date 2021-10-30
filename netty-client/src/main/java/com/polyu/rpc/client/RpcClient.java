@@ -24,7 +24,7 @@ public class RpcClient implements ApplicationContextAware, DisposableBean {
 
     private ServiceDiscovery serviceDiscovery;
     /**
-     * 异步请求 线程池
+     * 异步请求/callback 线程池
      */
     private static ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(16, 16,
             600L, TimeUnit.SECONDS, new LinkedBlockingQueue<>(1000));
