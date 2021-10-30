@@ -1,4 +1,6 @@
 # bRPC
+<a href="https://github.com/vincentbin/bRPC/blob/master/LICENSE"><img alt="GitHub license" src="https://img.shields.io/github/license/vincentbin/bRPC"></a>
+<a href="https://github.com/vincentbin/bRPC"><img alt="GitHub star" src="https://img.shields.io/github/stars/vincentbin/bRPC"></a>
 <details>
 <summary><strong>README 中文版本</strong></summary>
 <div>
