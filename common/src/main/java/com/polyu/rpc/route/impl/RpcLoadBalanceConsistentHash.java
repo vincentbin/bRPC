@@ -15,7 +15,6 @@ import java.util.List;
 public class RpcLoadBalanceConsistentHash implements RpcLoadBalance {
     private static final Logger logger = LoggerFactory.getLogger(RpcLoadBalanceConsistentHash.class);
 
-    // todo 也许逻辑有问题 同一个接口的key可能永远打到某台server
     private RpcMetaData doRoute(String serviceKey, List<RpcMetaData> addressList) {
         int index = Hashing.consistentHash(serviceKey.hashCode(), addressList.size());
         return addressList.get(index);
@@ -25,10 +24,9 @@ public class RpcLoadBalanceConsistentHash implements RpcLoadBalance {
     public RpcMetaData route(String serviceKey) throws Exception {
         logger.debug("RpcLoadBalanceConsistentHash is routing for {}.", serviceKey);
         List<RpcMetaData> addressList = MetaDataKeeper.getProtocolsFromServiceKey(serviceKey);
-        if (addressList != null && addressList.size() > 0) {
-            return doRoute(serviceKey, addressList);
-        } else {
+        if (addressList == null || addressList.isEmpty()) {
             throw new Exception("Can not find connection for service: " + serviceKey);
         }
+        return doRoute(serviceKey, addressList);
     }
 }
