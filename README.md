@@ -18,8 +18,8 @@
 
 ### 启动
 #### API式启动
-1. com.application.test.api.server.ServerTest.java  服务端启动
-2. com.application.test.api.client.ClientTest.java  客户端启动 并rpc调用HelloService.hello()
+1. ServerTest.java  服务端启动
+2. ClientTest.java  客户端启动 并rpc调用HelloService.hello()
 
 #### 与SpringBoot整合启动（由于未发布到远程仓库，所以需本地maven install。）
 
@@ -106,8 +106,8 @@ bRPC.server.registry.address=127.0.0.1:2181
 
 ### Start
 #### API startup
-1. com.application.test.api.server.ServerTest.java Server start
-2. com.application.test.api.client.ClientTest.java Client starts and rpc calls HelloService.hello()
+1. ServerTest.java Server start
+2. ClientTest.java Client starts and rpc calls HelloService.hello()
 
 #### Start integrated with SpringBoot (Because it is not published to a remote warehouse, it needs local maven install.)
 

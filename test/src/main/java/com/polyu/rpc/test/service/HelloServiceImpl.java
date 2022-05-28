@@ -1,4 +1,4 @@
-package com.application.test.service;
+package com.polyu.rpc.test.service;
 
 import com.polyu.rpc.annotation.BRpcProvider;
 

@@ -20,6 +20,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>4.13.1</junit.version>
         <slf4j.version>1.7.7</slf4j.version>
+        <logging-log4j.version>2.17.1</logging-log4j.version>
         <spring.version>5.2.20.RELEASE</spring.version>
         <netty.version>4.1.71.Final</netty.version>
         <kryo.version>4.0.2</kryo.version>
@@ -36,8 +37,25 @@
             <!-- SLF4J -->
             <dependency>
                 <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-log4j12</artifactId>
+                <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
+            </dependency>
+
+            <!-- log4j -->
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${logging-log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${logging-log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${logging-log4j.version}</version>
             </dependency>
 
             <!-- Spring -->

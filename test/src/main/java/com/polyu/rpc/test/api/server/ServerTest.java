@@ -1,9 +1,9 @@
-package com.application.test.api.server;
+package com.polyu.rpc.test.api.server;
 
-import com.application.test.service.HelloService;
-import com.application.test.service.HelloService2;
-import com.application.test.service.HelloServiceImpl;
-import com.application.test.service.HelloServiceImpl2;
+import com.polyu.rpc.test.service.HelloService;
+import com.polyu.rpc.test.service.HelloService2;
+import com.polyu.rpc.test.service.HelloServiceImpl;
+import com.polyu.rpc.test.service.HelloServiceImpl2;
 import com.polyu.rpc.registry.ServiceRegistry;
 import com.polyu.rpc.registry.zookeeper.ZKRegistry;
 import com.polyu.rpc.server.netty.NettyServer;

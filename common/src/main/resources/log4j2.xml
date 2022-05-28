@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+    <properties>
+        <property name="LOG_HOME" value="logs"/>
+        <property name="FILE_NAME" value="bRPC-log"/>
+    </properties>
+
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %5p %c{1}:%L %t - %m%n" charset="UTF-8"/>
+        </Console>
+
+        <RollingFile name="RollingFile" fileName="${LOG_HOME}/${FILE_NAME}.log"
+                     filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %5p %c{1}:%L %t - %m%n" charset="UTF-8"/>
+            <Filters>
+                <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+                <ThresholdFilter level="FATAL" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+                <SizeBasedTriggeringPolicy size="100MB" />
+            </Policies>
+
+            <DefaultRolloverStrategy max="5" compressionLevel="1">
+                <Delete basePath="${LOG_HOME}" maxDepth="2">
+                    <IfFileName glob="*/*.log.gz" />
+                    <IfLastModified age="180D" />
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <Root level="Info">
+            <appender-ref ref="Console" />
+        </Root>
+        <Logger name="com.polyu.rpc" level="Info" additivity="true">
+            <appender-ref ref="RollingFile" />
+        </Logger>
+    </loggers>
+</configuration>

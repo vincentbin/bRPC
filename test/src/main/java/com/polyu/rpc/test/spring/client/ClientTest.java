@@ -1,7 +1,7 @@
-package com.application.test.spring.client;
+package com.polyu.rpc.test.spring.client;
 
-import com.application.test.service.HelloService;
-import com.application.test.service.HelloService2;
+import com.polyu.rpc.test.service.HelloService;
+import com.polyu.rpc.test.service.HelloService2;
 import com.polyu.rpc.annotation.BRpcConsumer;
 import com.polyu.rpc.route.impl.RpcLoadBalanceRandom;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

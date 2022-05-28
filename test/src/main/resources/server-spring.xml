@@ -9,7 +9,7 @@
 
     <context:property-placeholder location="classpath:application.properties"/>
 
-    <context:component-scan base-package="com.application.test.service"/>
+    <context:component-scan base-package="com.polyu.rpc.test.service"/>
 
     <bean id="zkRegistry" class="com.polyu.rpc.registry.zookeeper.ZKRegistry">
         <constructor-arg name="registryAddress" value="${bRPC.registry.address}"/>

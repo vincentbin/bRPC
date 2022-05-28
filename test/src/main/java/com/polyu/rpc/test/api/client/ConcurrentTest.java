@@ -1,6 +1,6 @@
-package com.application.test.api.client;
+package com.polyu.rpc.test.api.client;
 
-import com.application.test.service.HelloService;
+import com.polyu.rpc.test.service.HelloService;
 import com.polyu.rpc.client.RpcClient;
 import com.polyu.rpc.registry.zookeeper.ZKDiscovery;
 import com.polyu.rpc.route.impl.RpcLoadBalanceRandom;

@@ -1,4 +1,4 @@
-package com.application.test.spring.server;
+package com.polyu.rpc.test.spring.server;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

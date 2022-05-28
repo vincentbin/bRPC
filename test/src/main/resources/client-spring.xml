@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.application.test.spring.client"/>
+    <context:component-scan base-package="com.polyu.rpc.test.spring.client"/>
 
     <bean id="zkDiscovery" class="com.polyu.rpc.registry.zookeeper.ZKDiscovery">
         <constructor-arg name="registryAddress" value="127.0.0.1:2181"/>
