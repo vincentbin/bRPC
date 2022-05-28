@@ -18,8 +18,8 @@
 
 ### 启动
 #### API式启动
-1. ServerTest.java  服务端启动
-2. ClientTest.java  客户端启动 并rpc调用HelloService.hello()
+1. com.polyu.rpc.test.api.server.ServerTest.java  服务端启动
+2. com.polyu.rpc.test.api.client.ClientTest.java  客户端启动 并rpc调用HelloService.hello()
 
 #### 与SpringBoot整合启动（由于未发布到远程仓库，所以需本地maven install。）
 

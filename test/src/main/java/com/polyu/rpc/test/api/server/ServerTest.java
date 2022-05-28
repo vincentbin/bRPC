@@ -20,7 +20,7 @@ public class ServerTest {
         String registryAddress = "127.0.0.1:2181";
         // nacos
 //        String registryAddress = "127.0.0.1:8848";
-        ServiceRegistry serviceRegistry = new ZKRegistry(registryAddress, "testYYB");
+        ServiceRegistry serviceRegistry = new ZKRegistry(registryAddress, "springbootApplication");
         NettyServer rpcServer = new NettyServer(serverAddress, serviceRegistry);
         HelloService helloService1 = new HelloServiceImpl();
         HelloServiceImpl2  helloService2 = new HelloServiceImpl2();
