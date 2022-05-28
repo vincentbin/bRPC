@@ -106,8 +106,8 @@ bRPC.server.registry.address=127.0.0.1:2181
 
 ### Start
 #### API startup
-1. ServerTest.java Server start
-2. ClientTest.java Client starts and rpc calls HelloService.hello()
+1. com.polyu.rpc.test.api.server.ServerTest.java Server start
+2. com.polyu.rpc.test.api.client.ClientTest.java Client starts and rpc calls HelloService.hello()
 
 #### Start integrated with SpringBoot (Because it is not published to a remote warehouse, it needs local maven install.)
 
